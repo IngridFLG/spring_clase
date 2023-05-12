@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1 th:text=${titulo2}></h1>
-<p th:text=${categorias}></p>
-<table>
-<thead>
-<tr>
-<td>Id</td>
-<td>Descripción</td>
-</tr>
-</thead>
-<tbody>
-	<tr th:each="categoria: ${categorias}">
-		<td th:text=${categoria.id}></td>
-		<td th:text=${categoria.descripcion}></td>
-	</tr>
-</tbody>
-</table>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Categoria</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body> 
+		<nav class="navbar navbar-dark bg-dark">
+			<a  class="navbar-brand" th:href="@{/categorias_view/listar}">
+				Categorias
+				<img src="https://w7.pngwing.com/pngs/894/405/png-transparent-bookmark-computer-icons-category-folders-angle-text-rectangle.png" 
+				width="30" height="30" class="d-inline-block align-top" alt="">
+			</a>
+		</nav>
+		<br>
+		<h2 class="text-center">Listado de categorias</h2>
+		<br><br>
+		<a th:href="@{/categorias_view/registrar}" class="btn btn-success" style="background-color:#343a40; border:none">Crear categoria</a>
+		<br>
+		<br>
+		<table class="table table-sm table-bordered " Style="text-align:center">
+			<thead>
+				<td>Id</td>
+				<td>Descripcion</td>
+				<td>Acciones</td>
+			</thead>
+			<tbody>
+				<tr th:each="categoria: ${categorias}">
+					<td th:text="${categoria.id}"></td>
+					<td th:text="${categoria.descripcion}"></td>
+				<td>
+					<a th:href="@{/categorias_view/registrar(id=${categoria.id})}">Editar</a>
+					<a th:href="@{/categorias_view/eliminar(id=${categoria.id})}">Eliminar</a>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

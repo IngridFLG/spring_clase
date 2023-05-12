@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:if="${news.id == null}">Add News</title>
+    <title th:if="${news.id != null}">Edit News</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <h1 th:if="${news.id == null}">Nueva noticia</h1>
+    <h1 th:if="${news.id != null}">Editar noticia</h1>
+    <form th:action="@{/news/agregar}" th:object="${news}" method="post">
+        <input type="hidden" name="id" th:field="*{id}"/>
+        <div>
+            <label>Title:</label>
+            <input type="text" th:field="*{titulo}">
+        </div>
+        <div>
+            <label>Desarrollo:</label>
+            <input type="text" th:field="*{desarrollo}">
+        </div>
+        <div>
+            <label>fecha:</label>
+            <input type="date" th:field="*{fecha}">
+        </div>
+        <div>
+            <label>Categoria:</label>
+            <input type="number" th:field="*{categoria}">
+        </div>
+        <div>
+            <label>URL:</label>
+            <input type="text" th:field="*{url}">
+        </div>
+        <div>
+            <label>Resumen:</label>
+            <textarea th:field="*{resumen}"></textarea>
+        </div>
+        <a th:text="${news.id == null ? 'Agregar' : 'Actualizar'}">Aceptar</a>
+    </form>
+</body>
+</html>

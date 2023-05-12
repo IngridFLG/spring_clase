@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+ <div class="container">
+    <h1 align="center">Listado de noticias</h1>
+    <a class="btn btn-primary mb-3" th:href="@{/news/agregar}">Agregar noticia</a>
+    <table  class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>titulo</th>
+                <th>desarrollo</th>
+                <th>fecha</th>
+                <th>Categoria</th>
+                <th>URL</th>
+                <th>resumen</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+				<tr th:each="news: ${news}">
+					<td th:text="${news.id}"></td>
+					<td th:text="${news.titulo}"></td>
+					<td th:text="${news.desarrollo}"></td>
+					<td th:text="${news.fecha}"></td>
+					<td th:text="${news.url}"></td>
+					<td th:text="${news.resumen}"></td>
+				<td>
+					<a class="btn btn-primary" th:href="@{/news/agregar(id=${news.id})}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/news/eliminar(id=${news.id})}">Eliminar</a>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</body>
+</html>
