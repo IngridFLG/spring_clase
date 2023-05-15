@@ -8,7 +8,7 @@
 <body>
  <div class="container">
     <h1 align="center">Listado de noticias</h1>
-    <a class="btn btn-primary mb-3" th:href="@{/news/agregar}">Agregar noticia</a>
+    <a class="btn btn-primary mb-3" th:href="@{/news/mostrar}">Agregar noticia</a>
     <table  class="table table-striped">
         <thead>
             <tr>
@@ -23,16 +23,17 @@
             </tr>
         </thead>
         <tbody>
-				<tr th:each="news: ${news}">
-					<td th:text="${news.id}"></td>
-					<td th:text="${news.titulo}"></td>
-					<td th:text="${news.desarrollo}"></td>
-					<td th:text="${news.fecha}"></td>
-					<td th:text="${news.url}"></td>
-					<td th:text="${news.resumen}"></td>
+				<tr th:each="noticia: ${news}">
+					<td th:text="${noticia.id}"></td>
+					<td th:text="${noticia.titulo}"></td>
+					<td th:text="${noticia.desarrollo}"></td>
+					<td th:text="${noticia.fecha}"></td>
+					<td th:text="${noticia.categoria.descripcion}"></td>
+					<td th:text="${noticia.url}"></td>
+					<td th:text="${noticia.resumen}"></td>
 				<td>
-					<a class="btn btn-primary" th:href="@{/news/agregar(id=${news.id})}">Editar</a>
-					<a class="btn btn-primary" th:href="@{/news/eliminar(id=${news.id})}">Eliminar</a>
+					<a class="btn btn-primary" th:href="@{/news/mostrar(id=${noticia.id})}">Editar</a>
+					<a class="btn btn-primary" th:href="@{/news/eliminar/{id}(id=${noticia.id})}">Eliminar</a>
 				</td>
 				</tr>
 			</tbody>
