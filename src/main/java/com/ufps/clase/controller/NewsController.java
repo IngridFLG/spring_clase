@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ufps.clase.entities.Categoria;
 import com.ufps.clase.entities.News;
+import com.ufps.clase.repository.CategoriaRepository;
 import com.ufps.clase.repository.NewsRepository;
 
 import jakarta.validation.Valid;
@@ -24,6 +27,9 @@ public class NewsController {
 
 	@Autowired
 	private NewsRepository newsRepository;
+	
+	@Autowired
+    private CategoriaRepository categoriaRepository;
 
 	@GetMapping("/list")
     public String listNews(Model model) {
@@ -41,6 +47,10 @@ public class NewsController {
 			news = newsRepository.findById(id).get();
 		}
 		
+		 List<Categoria> categorias = categoriaRepository.findAll();
+			model.addAttribute("categorias", categorias);
+			model.addAttribute("news", news);
+		
 		model.addAttribute("news", news);
 		return "agregarnoticias";
     }
@@ -51,6 +61,8 @@ public class NewsController {
             return "agregarnoticias";
         }
         newsRepository.save(news);
+        
+       
         
 
         return "redirect:/news/list";

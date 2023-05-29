@@ -25,8 +25,18 @@
             <input type="date" th:field="*{fecha}">
         </div>
         <div>
-            <label>Categoria:</label>
-            <input type="number" th:field="*{categoria.id}">
+            
+            <label for="categoria" class="col-sm-2 col-form-label" >Categoria:</label>
+	        <div class="col-sm-10">
+
+	             <select name="categoria" th:field="*{categoria.id}" required >
+					<option value="">Seleccione una categoría</option>
+					<option th:each="cat : ${categorias}"
+						th:value="${cat.id}" th:text="${cat.descripcion}"></option>
+				</select>
+			</div>
+            
+            
         </div>
         <div>
             <label>URL:</label>
